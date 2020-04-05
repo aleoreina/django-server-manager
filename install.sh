@@ -18,4 +18,13 @@ echo 'STATIC_ROOT = os.path.join(BASE_DIR, "static/")' >> manager/settings.py
 ./manage.py collectstatic
 # curl https://ipinfo.io/ip
 sed -i "s/ALLOWED_HOSTS \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
-./manage.py runserver 0.0.0.0:8080
+#./manage.py runserver 0.0.0.0:8080
+
+# uwsgi set up
+sudo mkdir -p /etc/uwsgi/sites
+cd /etc/uwsgi/sites
+wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/manager.ini
+sudo mkdir -p /etc/init/
+cd /etc/init/
+wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/uwsgi.conf
+
