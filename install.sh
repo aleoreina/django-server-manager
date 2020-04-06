@@ -22,9 +22,7 @@ sed -i "s/ALLOWED_HOSTS \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
 
 # uwsgi set up
 sudo mkdir -p /etc/uwsgi/sites
-cd /etc/uwsgi/sites
-wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/manager.ini
-sudo mkdir -p /etc/init/
-cd /etc/init/
-wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/uwsgi.conf
-
+cd /etc/uwsgi/sites && wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/manager.ini
+cd /etc/systemd/system/ && wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/uwsgi.service
+cd /etc/uwsgi/ && wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/emperor.ini
+systemctl start uwsgi.service
