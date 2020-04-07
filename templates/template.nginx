@@ -1,0 +1,14 @@
+server {
+    listen {{PORT}};
+    server_name {{DOMAIN-NAME}};
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/django/{{PROJECT_NAME}};
+    }
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/home/django/{{PROJECT_NAME}}/{{PROJECT_NAME}}.sock;
+    }
+}

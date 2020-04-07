@@ -37,15 +37,35 @@ echo 'STATIC_ROOT = os.path.join(BASE_DIR, "static/")' >> manager/settings.py
 sed -i "s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
 # To test it >>     ./manage.py runserver 0.0.0.0:8080
 
-# uwsgi set up
+# Installing UWSGI
 sudo pip3 install uwsgi
+
+# Setting UP UWSGI
 sudo mkdir -p /etc/uwsgi/sites
-cd /etc/uwsgi/sites && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/manager.ini
-cd /etc/systemd/system/ && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/uwsgi.service
+
+# Set up manager.ini to run project
+cd /etc/uwsgi/sites && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/install/etc/manager.ini
+
+# Set up uwsgi service 
+cd /etc/systemd/system/ && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/install/etc/uwsgi.service
+
+# To prevent, Killing all uwsgi services runned (if was runned)
+killall uwsgi
+
+# Running service of uwsgi
 sudo systemctl start uwsgi.service
+
+# Removing defaults of nginx
 sudo rm /etc/nginx/sites-enabled/default
-cd /etc/nginx/sites-available/ && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/uwsgi/manager.nginx
+sudo rm /etc/nginx/sites-available/default
+
+# Adding project (manager) to nginx
+cd /etc/nginx/sites-available/ && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/install/etc/manager.nginx
+
+# Symbol link to appear the file in sites-enabled
 sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
+
+# Restarting testing server and restarting
 sudo service nginx configtest && sudo service nginx restart
 
 

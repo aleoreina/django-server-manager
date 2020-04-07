@@ -1,6 +1,7 @@
 server {
-    listen 80;
-    server_name queencyworld.com;
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    #server_name yourdomain.com;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
