@@ -1,0 +1,37 @@
+{% load static %} {% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title> {% block title %}{% endblock %} | {{ app_name }} </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Emoji data CSS -->
+  <link href="{% static 'bower_components/emoji-data-css/files/eo-32-emoji.css' %}" media="all" rel="stylesheet" />  
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'template/base/css/landing-page.min.css' %}" rel="stylesheet">
+  <link href="{% static 'template/base/css/home_public.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  
+    {% block content %} {% endblock %}   
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

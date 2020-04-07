@@ -4,7 +4,7 @@ from .models import Page
 
 
 def home(request):
-    return render(request, "home.html")
+    return render(request, "public_home.html")
 
 class PageView(DetailView):
     model = Page
