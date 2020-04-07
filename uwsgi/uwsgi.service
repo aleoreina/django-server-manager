@@ -1,15 +1,12 @@
 [Unit]
-Description=uWSGI Emperor
-After=syslog.target
+Description=uWSGI Emperor service
 
 [Service]
-ExecStart=/usr/local/bin/uwsgi --chmod-socket=777 --master --emperor /etc/uwsgi/sites --die-on-term --uid www-data --gid www-data
-# Requires systemd version 211 or newer
-RuntimeDirectory=uwsgi
+ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown django:www-data /run/uwsgi'
+ExecStart=/usr/local/bin/uwsgi --emperor /etc/uwsgi/sites
 Restart=always
 KillSignal=SIGQUIT
 Type=notify
-StandardError=syslog
 NotifyAccess=all
 
 [Install]

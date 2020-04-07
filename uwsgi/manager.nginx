@@ -1,5 +1,5 @@
 server {
-    listen 8443;
+    listen 80;
     server_name queencyworld.com;
 
     location = /favicon.ico { access_log off; log_not_found off; }
@@ -9,6 +9,6 @@ server {
 
     location / {
         include         uwsgi_params;
-        uwsgi_pass      unix:/home/django/manager/manager/manager.sock;
+        uwsgi_pass      unix:/home/django/manager/manager.sock;
     }
 }
