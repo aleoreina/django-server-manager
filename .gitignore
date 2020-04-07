@@ -1,0 +1,9 @@
+*.pyc
+*.log
+*.lock
+*.sqlite3
+*.db.*
+webapp/node_modules/*
+webapp/static/bower_components/*
+webapp/staticfiles/*
+migrations/
