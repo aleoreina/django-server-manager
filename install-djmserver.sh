@@ -16,7 +16,10 @@ echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 su django
 
 # Installation of dependences
-sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip -y
+sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt install nodejs npm
+npm install -g yarn
 sudo -H pip3 install --upgrade pip
 sudo -H pip3 install virtualenv virtualenvwrapper
 
@@ -26,15 +29,16 @@ echo "export WORKON_HOME=~/Env" >> ~/.bashrc
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 source ~/.bashrc
 
+
 # Getting up a clean project of django
 cd /home/django
-mkvirtualenv manager
-pip install django
-django-admin.py startproject manager
-cd /home/django/manager/ && ./manage.py migrate
-echo 'STATIC_ROOT = os.path.join(BASE_DIR, "static/")' >> manager/settings.py
-./manage.py collectstatic
-sed -i "s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
+#mkvirtualenv manager
+#pip install django
+#django-admin.py startproject manager
+#cd /home/django/manager/ && ./manage.py migrate
+#echo 'STATIC_ROOT = os.path.join(BASE_DIR, "static/")' >> manager/settings.py
+#./manage.py collectstatic
+#sed -i "s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
 # To test it >>     ./manage.py runserver 0.0.0.0:8080
 
 # Installing UWSGI
