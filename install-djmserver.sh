@@ -14,7 +14,7 @@ echo "AllowUsers root" >> /etc/ssh/sshd_config
 echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Taking a restart of SSH
-/etc/init.d/sshd restart
+sudo service ssh restart
 
 # Entering to django
 su django
