@@ -7,7 +7,7 @@ usermod –aG sudo django
 
 # To prevent login from django and limit user root only.
 echo "AllowUsers root" >> /etc/ssh/sshd_config
-/etc/init.d/sshd restart
+sudo service ssh restart
 
 # No password to sudo commands
 echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
