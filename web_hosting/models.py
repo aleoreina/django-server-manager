@@ -27,7 +27,7 @@ class Account (models.Model):
         return self.domain
 
 class Database (models.Model):
-    STATUS_ACCOUNT = (
+    STATUS_DATABASE = (
         ('Running', 'Running'),
         ('Online', 'Online'),
         ('Stop', 'Stop'),
