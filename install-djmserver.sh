@@ -32,14 +32,11 @@ source ~/.bashrc
 
 # Getting up a clean project of django
 cd /home/django
-#mkvirtualenv manager
-#pip install django
-#django-admin.py startproject manager
-#cd /home/django/manager/ && ./manage.py migrate
-#echo 'STATIC_ROOT = os.path.join(BASE_DIR, "static/")' >> manager/settings.py
-#./manage.py collectstatic
-#sed -i "s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \['*'\]/g" manager/settings.py
-# To test it >>     ./manage.py runserver 0.0.0.0:8080
+mkdir /home/django/manager && cd /home/django/manager 
+git clone git@github.com:aleoreina/django-server-manager.git
+mkvirtualenv manager
+pip install -r req.txt
+yarn
 
 # Installing UWSGI
 sudo pip3 install uwsgi
@@ -71,5 +68,3 @@ sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
 
 # Restarting testing server and restarting
 sudo service nginx configtest && sudo service nginx restart
-
-
