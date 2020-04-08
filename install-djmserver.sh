@@ -3,14 +3,18 @@ sudo apt-get update && sudo apt-get upgrade
 
 #Adding user django with sudoers group
 sudo adduser django --gecos "Django,127.0.0.1,0000,0000" --disabled-password
-usermod –aG sudo django
+
+# Adding user "django" to group of sudoers 
+usermod -aG sudo django
 
 # To prevent login from django and limit user root only.
 echo "AllowUsers root" >> /etc/ssh/sshd_config
-sudo service ssh restart
 
-# No password to sudo commands
+# No password to sudo commands for user "django"
 echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Taking a restart of SSH
+/etc/init.d/sshd restart
 
 # Entering to django
 su django
