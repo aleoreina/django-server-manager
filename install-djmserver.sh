@@ -17,30 +17,36 @@ echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 sudo service ssh restart
 
 # Entering to django
-su django
+#su django
 
 # Installation of dependences
 sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt install nodejs npm
-npm install -g yarn
+sudo apt-get install gcc g++ make -y
+sudo apt install nodejs -y
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+#npm install -g yarn
 sudo -H pip3 install --upgrade pip
 sudo -H pip3 install virtualenv virtualenvwrapper
 
 # VirtualEnvWrapper setting up (for user django)
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
-echo "export WORKON_HOME=~/Env" >> ~/.bashrc
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-source ~/.bashrc
+su django -c "echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >> ~/.bashrc"
+su django -c "echo 'export WORKON_HOME=~/Env' >> ~/.bashrc"
+su django -c "echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc"
+su django -c "source ~/.bashrc &&"
 
 
 # Getting up a clean project of django
 cd /home/django
-mkdir /home/django/manager && cd /home/django/manager 
-git clone git@github.com:aleoreina/django-server-manager.git
-mkvirtualenv manager
-pip install -r req.txt
-yarn
+su django -c "git clone https://github.com/aleoreina/django-server-manager.git"
+su django -c "source ~/.bashrc && mv ./django-server-manager ./manager"
+cd /home/django/manager
+su django -c "source ~/.bashrc && mkvirtualenv manager"
+su django -c "source ~/.bashrc && pip install -r req.txt"
+su django -c "yarn"
+su django -c "source ~/.bashrc && ./manage.py collecstatic"
 
 # Installing UWSGI
 sudo pip3 install uwsgi
@@ -54,12 +60,6 @@ cd /etc/uwsgi/sites && sudo wget https://raw.githubusercontent.com/aleoreina/dja
 # Set up uwsgi service 
 cd /etc/systemd/system/ && sudo wget https://raw.githubusercontent.com/aleoreina/django-server-manager/master/install/etc/uwsgi.service
 
-# To prevent, Killing all uwsgi services runned (if was runned)
-killall uwsgi
-
-# Running service of uwsgi
-sudo systemctl start uwsgi.service
-
 # Removing defaults of nginx
 sudo rm /etc/nginx/sites-enabled/default
 sudo rm /etc/nginx/sites-available/default
@@ -72,3 +72,9 @@ sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
 
 # Restarting testing server and restarting
 sudo service nginx configtest && sudo service nginx restart
+
+# To prevent, Killing all uwsgi services runned (if was runned)
+killall uwsgi
+
+# Running service of uwsgi
+sudo systemctl start uwsgi.service
