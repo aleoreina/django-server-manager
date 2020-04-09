@@ -50,6 +50,8 @@ deactivate
 source /home/django/Env/manager/bin/activate
 pip install -r req.txt
 su django -c "yarn"
+./manage.py makemigrations
+./manage.py migrate
 ./manage.py collecstatic
 deactivate
 
