@@ -22,13 +22,13 @@ sudo service ssh restart
 #su django
 
 # Installation of dependences
-sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y
+sudo apt-get -y install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install gcc g++ make -y
-sudo apt-get install nodejs -y
+sudo apt-get -y install gcc g++ make 
+sudo apt-get -y install nodejs 
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install yarn -y
+sudo apt-get update && sudo apt-get -y install yarn 
 #npm install -g yarn
 sudo -H pip3 install --upgrade pip 
 sudo -H pip3 install virtualenv virtualenvwrapper
