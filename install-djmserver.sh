@@ -55,6 +55,7 @@ deactivate
 
 # Returning permission for enviroment to user django
 chown -R django /home/django/Env
+chown -R django /home/django/manager
 
 # Installing UWSGI
 sudo pip3 install uwsgi
