@@ -25,7 +25,7 @@ sudo service ssh restart
 sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install gcc g++ make -y
-sudo apt install nodejs -y
+sudo apt-get install nodejs -y
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn -y
@@ -46,9 +46,12 @@ su django -c "mv ./django-server-manager ./manager"
 cd /home/django/manager
 source /home/django/.bashrc
 mkvirtualenv manager
+deactivate
+source /home/django/Env/manager/bin/activate
 pip install -r req.txt
 su django -c "yarn"
 ./manage.py collecstatic
+deactivate
 
 # Returning permission for enviroment to user django
 chown -R django /home/django/Env
