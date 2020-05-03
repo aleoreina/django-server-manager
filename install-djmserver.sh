@@ -29,7 +29,8 @@ sudo apt-get -y install nodejs
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get -y install yarn 
-#npm install -g yarn
+# Special requirement for manager (django)
+npm install is-github-url -g
 sudo -H pip3 install --upgrade pip 
 sudo -H pip3 install virtualenv virtualenvwrapper
 
