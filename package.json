@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "4.4.1",
     "emoji-data-css": "^1.0.1",
+    "is-github-url": "^1.2.2",
     "jquery": "^3.4.1",
     "simple-line-icons": "^2.4.1"
   }

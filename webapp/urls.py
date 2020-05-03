@@ -17,6 +17,9 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
+admin.site.site_header = 'Django Server Manager'
+admin.site.site_title = 'Django Server Manager Administration'
+
 urlpatterns = [
     path('admin/', admin.site.urls), # Admin Django
     path('', include("simplepages.urls")), # Module: SimplePages
