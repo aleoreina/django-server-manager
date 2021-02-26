@@ -10,7 +10,7 @@ sudo adduser django --gecos "Django,127.0.0.1,0000,0000" --disabled-password
 usermod -aG sudo django
 
 # To prevent login from django and limit user root only.
-echo "AllowUsers root" >> /etc/ssh/sshd_config
+echo "AllowUsers ubuntu" >> /etc/ssh/sshd_config
 
 # No password to sudo commands for user "django"
 echo "django ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
