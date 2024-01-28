@@ -24,7 +24,7 @@ sudo service ssh restart
 # Installation of dependences
 
 # Begin - next-line updated || required by Ubuntu 22.04 works!
-sudo apt-get install build-essential nginx python-pip sqlite python3 git -y 
+sudo apt-get install build-essential nginx python3-pip sqlite python3 git -y 
 # End - next-line updated || required by Ubuntu 22.04 works!
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install gcc g++ make -y 
