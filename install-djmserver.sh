@@ -88,6 +88,9 @@ cd /etc/nginx/sites-available/ && sudo wget https://raw.githubusercontent.com/al
 # Symbol link to appear the file in sites-enabled
 sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
 
+# django_cache tmp added
+sudo mkdir /tmp/django_cache/
+
 # Fixing permission for projects in Django:
 sudo setfacl -R -m user:www-data:rwx  /home/django/
 
