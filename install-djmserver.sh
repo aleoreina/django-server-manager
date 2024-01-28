@@ -23,7 +23,7 @@ sudo service ssh restart
 
 # Installation of dependences
 sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y 
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install gcc g++ make -y 
 sudo apt-get install nodejs -y 
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
