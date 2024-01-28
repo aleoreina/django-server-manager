@@ -63,6 +63,9 @@ deactivate
 chown -R django /home/django/Env
 chown -R django /home/django/manager
 
+# Install ACL
+sudo apt-get install acl -y
+
 # Installing UWSGI
 sudo pip3 install uwsgi
 
@@ -84,6 +87,12 @@ cd /etc/nginx/sites-available/ && sudo wget https://raw.githubusercontent.com/al
 
 # Symbol link to appear the file in sites-enabled
 sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
+
+# Fixing permission for projects in Django:
+sudo setfacl -R -m user:www-data:rwx  /home/django/
+
+# Fixing permission for projects in Django (Cache):
+sudo setfacl -R -m user:www-data:rwx  /tmp/django_cache/
 
 # Restarting testing server and restarting
 sudo service nginx configtest && sudo service nginx restart
