@@ -22,7 +22,10 @@ sudo service ssh restart
 #su django
 
 # Installation of dependences
-sudo apt-get install build-essential nginx python-dev python-pip python-sqlite sqlite python3 python3-pip git -y 
+
+# Begin - next-line updated || required by Ubuntu 22.04 works!
+sudo apt-get install build-essential nginx python-pip sqlite python3 git -y 
+# End - next-line updated || required by Ubuntu 22.04 works!
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install gcc g++ make -y 
 sudo apt-get install nodejs -y 
