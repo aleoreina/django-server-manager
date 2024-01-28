@@ -56,7 +56,7 @@ pip install -r req.txt
 su django -c "yarn"
 ./manage.py makemigrations
 ./manage.py migrate
-./manage.py collecstatic
+./manage.py collectstatic
 deactivate
 
 # Returning permission for enviroment to user django
@@ -89,7 +89,7 @@ sudo ln -s /etc/nginx/sites-available/manager.nginx /etc/nginx/sites-enabled
 sudo service nginx configtest && sudo service nginx restart
 
 # To prevent, Killing all uwsgi services runned (if was runned)
-killall uwsgi
+#killall uwsgi
 
 # Running service of uwsgi
 sudo systemctl restart uwsgi
